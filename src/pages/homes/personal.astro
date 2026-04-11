@@ -1,7 +1,7 @@
 ---
+import partnerMap from '~/assets/images/partner.png';
+import Brands from '~/components/widgets/Brands.astro';
 import Layout from '~/layouts/PageLayout.astro';
-
-import Header from '~/components/widgets/Header.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
@@ -9,7 +9,7 @@ import Features3 from '~/components/widgets/Features3.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import { getPermalink } from '~/utils/permalinks';
+// import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'Personal Homepage Demo',
@@ -17,7 +17,7 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <Fragment slot="announcement"></Fragment>
+  <!-- <Fragment slot="announcement"></Fragment>
   <Fragment slot="header">
     <Header
       links={[
@@ -37,21 +37,16 @@ const metadata = {
       isSticky
       showToggleTheme
     />
-  </Fragment>
+  </Fragment> -->
 
   <!-- Hero2 Widget ******************* -->
 
-  <Hero
-    id="hero"
-    title="Sarah Johnson"
-    tagline="Personal Web Demo"
-    actions={[{ variant: 'primary', text: 'Hire me', href: getPermalink('/contact#form') }]}
-  >
-    <Fragment slot="subtitle">
+  <Hero id="hero" title="CEO 인사말" tagline="greeting">
+    <!-- <Fragment slot="subtitle">
       I'm a Graphic Designer passionate about crafting visual stories. <br /> With 5 years of experience and a degree from
       New York University's School of Design. I infuse vitality into brands and designs, transforming concepts into captivating
       realities.
-    </Fragment>
+    </Fragment> -->
   </Hero>
 
   <!-- Content Widget **************** -->
@@ -59,58 +54,232 @@ const metadata = {
   <Content
     id="about"
     columns={3}
-    items={[
-      {
-        icon: 'tabler:brand-dribbble',
-        callToAction: {
-          target: '_blank',
-          text: 'Dribbble',
-          href: '#',
-        },
-      },
-      {
-        icon: 'tabler:brand-behance',
-        callToAction: {
-          target: '_blank',
-          text: 'Behance',
-          href: '#',
-        },
-      },
-      {
-        icon: 'tabler:brand-pinterest',
-        callToAction: {
-          target: '_blank',
-          text: 'Pinterest',
-          href: '#',
-        },
-      },
-    ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-      alt: 'Colorful Image',
+      src: '~/assets/images/CEO.png',
+      alt: 'CEO Image',
       loading: 'eager',
     }}
   >
     <Fragment slot="content">
-      <h2 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">About me</h2>
+      <h2 class="mb-2 text-2xl font-bold tracking-tight dark:text-white sm:text-3xl">대표이사 류병욱</h2>
       <p>
-        Welcome to my creative journey. My work is a testament to my commitment to bringing ideas to life, where each
-        pixel becomes a brushstroke in the canvas of imagination.
+        <br />
+        안녕하십니까?
+        <br /><br />
+        먼저 휴먼텍 홈페이지를 찾아와 주셔서 진심으로 감사 드립니다. <br />우리는 30년 넘는 업계 경험과 15년이 넘는
+        에이전시 경험을 바탕으로 고객에게 최선의 결과를 낼 수 있도록 유익한 솔루션을 제공해 드리고 있습니다. <br
+        />임직원들과 함께 항상 창의적이고 긍정적인 자세로 고객에게 좋을 결과를 드리기 위해 최선을 다하고 있습니다.
       </p>
       <br />
       <p>
-        I find inspiration in the world around me, whether through the pages of a captivating novel, the intricate
-        details of typography, or the vibrant hues of nature during my outdoor escapades.
+        최상의 기술력과 지식을 갖춘 제조사와 고객이 좋은 파트너가 되어, 최선의 품질과 합리적인 가격의 제품을 제공하여
+        드릴 수 있도록 노력하고 있습니다.
       </p>
       <br />
-      <p>If you're curious to dive deeper into my work, you can follow me:</p>
+      <!-- <p>If you're curious to dive deeper into my work, you can follow me:</p> -->
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-gray-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
+  <section class="relative px-4 py-10 mx-auto max-w-7xl md:px-6 lg:py-14 text-default">
+    <div class="mt-8">
+      <div class="max-w-3xl mx-auto mb-8 text-center">
+        <h2 class="mb-4 text-2xl font-bold tracking-tight dark:text-white sm:text-3xl font-heading">
+          글로벌 파트너 네트워크
+        </h2>
+
+        <p class="text-lg text-muted dark:text-slate-400">
+          전 세계 주요 거점에 위치한 당사의 핵심 파트너사 현황입니다.
+        </p>
+      </div>
+
+      <div class="flex items-center justify-center">
+        <div class="relative w-full max-w-4xl">
+          <img
+            src={partnerMap.src}
+            alt="Global Partner Map"
+            class="w-full h-auto mx-auto bg-white border border-gray-200 shadow-lg rounded-xl dark:border-gray-700 dark:bg-slate-900"
+          />
+        </div>
+      </div>
+    </div>
+
+    <Brands
+      title="Partnerships & Collaborations"
+      subtitle="At Astrowind, we believe in the power of collaboration to drive innovation and create"
+      icons={[]}
+      images={[
+        {
+          src: '~/assets/images/logo-panasonic.svg',
+          alt: 'Panasonic',
+          href: 'https://industrial.panasonic.com/kr/products/pt/megtron',
+        },
+        {
+          src: '~/assets/images/logo-newccess.svg',
+          alt: 'Newccess',
+          href: 'https://www.newccess.com/',
+        },
+        {
+          src: '~/assets/images/logo-teknek.svg',
+          alt: 'Teknek',
+          href: 'https://www.teknek.com/',
+        },
+        {
+          src: '~/assets/images/logo-cedatec.svg',
+          alt: 'Cedatec',
+          href: 'https://www.cedatec.it/',
+        },
+      ]}
+    />
+  </section>
+
+  <Content
+    id="porfolio"
+    title="Supplier Items"
+    subtitle="Humantech has best partners in each field of PCB industry in Asia and Europe, and bringing their technology and experience to Korea"
+    isReversed
+    items={[
+      {
+        title: 'MEG 시리즈 CCL',
+        description:
+          '업계 최고 수준의 저손실·저유전 특성을 바탕으로 초고속 데이터 전송과 높은 열 안정성을 동시에 구현하는 하이엔드 다층 기판 소재입니다.',
+      },
+      {
+        title: 'R 시리즈 CCL',
+        description:
+          '업계 최저 수준의 전송 손실과 낮은 열팽창계수(CTE)를 동시에 달성하여, 고속·대용량 데이터를 처리하는 IC 패키지의 소형화와 신뢰성을 극대화하는 기판 소재입니다.',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/MEGTRON.png',
+      alt: 'Tech Design Image',
+    }}
+    callToAction={{
+      target: '_blank',
+      text: '제품 상세 페이지',
+      icon: 'tabler:chevron-right',
+      href: '#',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="mb-2 text-2xl font-bold tracking-tight dark:text-white sm:text-3xl">
+        Panasonic <br /><span class="text-2xl">Japan</span>
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-glay-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+  <Content
+    isReversed
+    isAfterContent={true}
+    items={[
+      {
+        title: 'Description:',
+        description:
+          'Designed a captivating event poster for an art and music festival, "ArtWave Fusion," aiming to showcase the synergy between visual art and music genres.',
+      },
+      {
+        title: 'Role:',
+        description: `Translated the festival's creative theme into a visually striking poster. Used bold typography, vibrant colors, and abstract elements to depict the fusion of art and music. Ensured the design captured the festival's vibrant atmosphere.`,
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1619983081563-430f63602796?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+      alt: 'Art and Music Poster Image',
+    }}
+    callToAction={{
+      target: '_blank',
+      text: 'Go to the project',
+      icon: 'tabler:chevron-right',
+      href: '#',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="mb-2 text-2xl font-bold tracking-tight dark:text-white sm:text-3xl">
+        Project 2: <br /><span class="text-2xl">Event poster for art & music festival</span>
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-glay-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    isAfterContent={true}
+    items={[
+      {
+        title: 'Description:',
+        description: `Redesigned the e-commerce website for an eco-conscious fashion brand, GreenVogue. The objective was to align the brand's online presence with its sustainable ethos and improve user experience.`,
+      },
+      {
+        title: 'Role:',
+        description: `Conducted a thorough analysis of the brand's values and customer base to inform the design direction. Created a visually appealing interface with intuitive navigation, highlighting sustainable materials, and integrating a user-friendly shopping experience.`,
+      },
+    ]}
+    image={{
+      src: 'https://plus.unsplash.com/premium_photo-1683288295841-782fa47e4770?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+      alt: 'Fashion e-commerce Image',
+    }}
+    callToAction={{
+      target: '_blank',
+      text: 'Go to the project',
+      icon: 'tabler:chevron-right',
+      href: '#',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="mb-2 text-2xl font-bold tracking-tight dark:text-white sm:text-3xl">
+        Project 3: <br /><span class="text-2xl">E-commerce website redesign for fashion brand</span>
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-glay-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+  <Content
+    isReversed
+    isAfterContent={true}
+    items={[
+      {
+        title: 'Description:',
+        description: `Redesigned the e-commerce website for an eco-conscious fashion brand, GreenVogue. The objective was to align the brand's online presence with its sustainable ethos and improve user experience.`,
+      },
+      {
+        title: 'Role:',
+        description: `Conducted a thorough analysis of the brand's values and customer base to inform the design direction. Created a visually appealing interface with intuitive navigation, highlighting sustainable materials, and integrating a user-friendly shopping experience.`,
+      },
+    ]}
+    image={{
+      src: 'https://plus.unsplash.com/premium_photo-1683288295841-782fa47e4770?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+      alt: 'Fashion e-commerce Image',
+    }}
+    callToAction={{
+      target: '_blank',
+      text: 'Go to the project',
+      icon: 'tabler:chevron-right',
+      href: '#',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="mb-2 text-2xl font-bold tracking-tight dark:text-white sm:text-3xl">
+        Project 3: <br /><span class="text-2xl">E-commerce website redesign for fashion brand</span>
+      </h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-glay-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
   <!-- Steps Widget ****************** -->
 
   <Steps
@@ -200,45 +369,6 @@ const metadata = {
 
   <!-- Content Widget **************** -->
 
-  <Content
-    id="porfolio"
-    title="Elevating visual narratives"
-    subtitle="Embark on a design journey that surpasses pixels, entering a realm of imagination. Explore my portfolio, where passion and creativity converge to shape enthralling visual narratives."
-    isReversed
-    items={[
-      {
-        title: 'Description:',
-        description:
-          'Developed a comprehensive brand identity for a tech startup, Tech Innovators, specializing in disruptive innovations. The goal was to convey a modern yet approachable image that resonated with both corporate clients and tech enthusiasts.',
-      },
-      {
-        title: 'Role:',
-        description:
-          'Led the entire branding process from concept to execution. Created a dynamic logo that symbolized innovation, selected a vibrant color palette, and I designed corporate stationery, website graphics, and social media assets.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1658248165252-71e116af1b34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80',
-      alt: 'Tech Design Image',
-    }}
-    callToAction={{
-      target: '_blank',
-      text: 'Go to the project',
-      icon: 'tabler:chevron-right',
-      href: '#',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-        Project 1: <br /><span class="text-2xl">Brand identity for tech innovators</span>
-      </h3>
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
   <!-- Content Widget **************** -->
 
   <Content
@@ -267,7 +397,7 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+      <h3 class="mb-2 text-2xl font-bold tracking-tight dark:text-white sm:text-3xl">
         Project 2: <br /><span class="text-2xl">Event poster for art & music festival</span>
       </h3>
     </Fragment>
@@ -304,7 +434,7 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+      <h3 class="mb-2 text-2xl font-bold tracking-tight dark:text-white sm:text-3xl">
         Project 3: <br /><span class="text-2xl">E-commerce website redesign for fashion brand</span>
       </h3>
     </Fragment>

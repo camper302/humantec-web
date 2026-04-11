@@ -5,6 +5,7 @@ import type { Brands as Props } from '~/types';
 import Image from '~/components/common/Image.astro';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+
 const {
   title = '',
   subtitle = '',
@@ -18,18 +19,49 @@ const {
 } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+<!-- <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}> -->
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`}
+  sectionPadding="py-6 md:py-8 lg:py-10"
+  bg={bg}
+>
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
 
-  <div class="flex flex-wrap justify-center gap-x-6 sm:gap-x-12 lg:gap-x-24">
-    {icons && icons.map((icon) => <Icon name={icon} class="py-3 lg:py-5 w-12 h-auto mx-auto sm:mx-0 text-gray-500" />)}
+  {/* 수정 포인트 1: flex-wrap과 justify-center를 사용하여 무조건 중앙 정렬 */}
+  <div class="flex flex-wrap items-center justify-center gap-6 mt-12 md:gap-12">
+    {
+      icons &&
+        icons.map((icon) => (
+          <div class="flex items-center justify-center p-2">
+            <Icon name={icon} class="w-12 h-auto text-gray-500" />
+          </div>
+        ))
+    }
+
     {
       images &&
         images.map(
           (image) =>
             image.src && (
-              <div class="flex justify-center col-span-1 my-2 lg:my-4 py-1 px-3 rounded-md dark:bg-gray-200">
-                <Image src={image.src} alt={image.alt || ''} class="max-h-12" width={120} height={48} layout="fixed" />
+              /* 수정 포인트 2: 고정된 너비 대신 유연한 너비(min-w)를 주어 중앙 균형을 잡음 */
+              <div class="flex justify-center items-center min-h-[100px] min-w-[180px] md:min-w-[220px] p-4 opacity-90 hover:opacity-100 transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 cursor-pointer overflow-visible">
+                <a
+                  href={image.href || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="relative flex justify-center items-center h-20 min-w-[150px] md:min-w-[200px] p-2 opacity-90 hover:opacity-100 transition-all duration-300 ease-out hover:scale-115 hover:-translate-y-1 hover:z-10 cursor-pointer"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt || ''}
+                    class="object-contain w-auto max-h-12"
+                    width={280}
+                    height={100}
+                    layout="constrained"
+                  />
+                </a>
               </div>
             )
         )
