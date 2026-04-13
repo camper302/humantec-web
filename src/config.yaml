@@ -1,6 +1,6 @@
 site:
   name: Humantec
-  site: 'https://github.io'
+  site: 'https://camper302.github.io'
   basePathname: '/humantec-web'
   trailingSlash: true
   #name: AstroWind
