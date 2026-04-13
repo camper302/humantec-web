@@ -23,7 +23,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'static',
-  site: 'https://github.io',
+  site: 'https://camper302.github.io', 
   base: '/humantec-web',
 
   integrations: [
