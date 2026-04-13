@@ -1,8 +1,13 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
-  base: '/'
-  trailingSlash: false
+  name: Humantec
+  site: 'https://github.io'
+  basePathname: '/humantec-web'
+  trailingSlash: true
+  #name: AstroWind
+  #site: 'https://astrowind.vercel.app'
+  #base: '/'
+  #trailingSlash: false
+  #main 머지시 버셀 베포시 원상 복구 할 것
 
   googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
 
