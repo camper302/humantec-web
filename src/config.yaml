@@ -1,8 +1,17 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
-  base: '/'
-  trailingSlash: false
+ // 메인으로 버셀 베포시 복구 사항 시작
+ // name: AstroWind
+ // site: 'https://astrowind.vercel.app'
+ // base: '/'
+ // trailingSlash: false
+
+ // 메인으로 버셀 베포시 복구 사항 끝
+  name: Humantec  # 사이트 이름 (원하시는 대로 수정 가능)
+  # [GitHub Pages 설정] Vercel 배포 시 아래 두 줄을 원래대로(vercel.app / '/') 복구하세요.
+  site: 'https://github.io'
+  basePathname: '/humantec-web' 
+  trailingSlash: true
+ 
 
   googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
 
