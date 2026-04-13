@@ -25,7 +25,7 @@ export default defineConfig({
   output: 'static',
   //시작) 브런치 동작 확인을 위한 소스 향후 머지시 삭제
   site: 'https://camper302.github.io', 
-  base: '/humantec-web/', 
+  base: '/humantec-web', 
   trailingSlash: 'always', 
   // 끝) .github/workflows/deploy.yml 파일도 삭제 필요
   integrations: [
