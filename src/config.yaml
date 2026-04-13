@@ -1,8 +1,7 @@
 site:
   name: Humantec
   site: 'https://camper302.github.io'
-  #basePathname: '/humantec-web'
-  base:'/humantec-web'
+  basePathname: '/humantec-web'
   trailingSlash: true
   #name: AstroWind
   #site: 'https://astrowind.vercel.app'
