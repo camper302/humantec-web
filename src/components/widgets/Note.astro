@@ -14,9 +14,9 @@ const {
 } = Astro.props;
 ---
 
-<section class="bg-blue-50 dark:bg-slate-800 not-prose">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 text-md text-center font-medium">
-    <Icon name={icon} class="w-5 h-5 inline-block align-text-bottom font-bold" />
+<section class="bg-yellow-50 dark:bg-slate-800 not-prose">
+  <div class="max-w-6xl px-4 py-4 mx-auto font-medium text-center sm:px-6 text-md">
+    <Icon name={icon} class="inline-block w-5 h-5 font-bold align-text-bottom" />
     <span class="font-bold" set:html={title} />
     <Fragment set:html={description} />
   </div>

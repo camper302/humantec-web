@@ -61,40 +61,27 @@ const {
           classes={{
             container: `gap-y-4 md:gap-y-8`,
             panel: 'max-w-none',
-            title: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
-            description: 'text-muted dark:text-slate-400 ml-2 rtl:ml-0 rtl:mr-2',
+            title: 'text-lg font-medium leading-6 dark:text-white ml-2',
+            description: 'text-muted dark:text-slate-400 ml-2',
             icon: 'flex h-7 w-7 items-center justify-center rounded-full bg-green-600 dark:bg-green-700 text-gray-50 p-1',
-            action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
           }}
         />
       </div>
       <div aria-hidden="true" class="mt-10 md:mt-0 md:basis-1/2">
         {
           image && (
-            <div class="relative max-w-4xl m-auto">
+            <div class="relative m-auto max-w-[580px]">
               {typeof image === 'string' ? (
                 <Fragment set:html={image} />
               ) : (
-                // <Image
-                //   class="w-full mx-auto bg-gray-500 rounded-lg shadow-lg"
-                //   width={500}
-                //   height={500}
-                //   widths={[400, 768]}
-                //   sizes="(max-width: 768px) 100vw, 432px"
-                //   layout="responsive"
-                //   {...image}
-                // />
-                <div class="relative m-auto max-w-[580px]">
-                  <Image
-                    class="w-full mx-auto rounded-lg shadow-lg"
-                    width={800}
-                    height={640}
-                    widths={[400, 600, 800]}
-                    sizes="(max-width: 768px) 100vw, 580px"
-                    layout="responsive"
-                    {...image}
-                  />
-                </div>
+                <Image
+                  class="w-full mx-auto bg-gray-400 rounded-lg shadow-lg dark:bg-slate-700"
+                  width={800}
+                  height={640}
+                  widths={[400, 800]}
+                  layout="responsive"
+                  {...image}
+                />
               )}
             </div>
           )

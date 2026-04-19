@@ -18,7 +18,7 @@ type ImageType = {
 const props = Astro.props;
 
 if (props.alt === undefined || props.alt === null) {
-  throw new Error();
+  throw new Error('Image alt text is required for accessibility.');
 }
 
 if (typeof props.width === 'string') {
@@ -38,23 +38,44 @@ if (!props.decoding) {
 }
 
 const _image = await findImage(props.src);
-
 let image: ImageType | undefined = undefined;
 
-if (
-  typeof _image === 'string' &&
-  (_image.startsWith('http://') || _image.startsWith('https://')) &&
-  isUnpicCompatible(_image)
-) {
-  image = await getImagesOptimized(_image, props, unpicOptimizer);
-} else if (_image) {
-  image = await getImagesOptimized(_image, props, astroAssetsOptimizer);
+if (_image) {
+  // 🔥 핵심: width/height 없으면 원본 이미지 그대로 사용
+  if (!props.width && !props.height) {
+    image = {
+      src: typeof _image === 'string' ? _image : _image.src,
+      attributes: {
+        alt: props.alt,
+        class: props.class,
+        loading: props.loading,
+        decoding: props.decoding,
+      },
+    };
+  } else {
+    // 기존 최적화 유지
+    if (
+      typeof _image === 'string' &&
+      (_image.startsWith('http://') || _image.startsWith('https://')) &&
+      isUnpicCompatible(_image)
+    ) {
+      image = await getImagesOptimized(_image, props, unpicOptimizer);
+    } else {
+      image = await getImagesOptimized(_image, props, astroAssetsOptimizer);
+    }
+  }
 }
 ---
 
 {
   !image ? (
-    <Fragment />
+    <div
+      class={`bg-gray-200 dark:bg-slate-700 rounded-lg animate-pulse ${props.class || ''}`}
+      style={{
+        width: props.width ? `${props.width}px` : '100%',
+        height: props.height ? `${props.height}px` : '200px',
+      }}
+    />
   ) : (
     <img src={image.src} crossorigin="anonymous" referrerpolicy="no-referrer" {...image.attributes} />
   )

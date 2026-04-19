@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { SITE } from 'astrowind:config';
 import { getHomePermalink } from '~/utils/permalinks';
 
@@ -7,103 +6,62 @@ interface Link {
   text?: string;
   href?: string;
   ariaLabel?: string;
-  icon?: string;
-}
-
-interface Links {
-  title?: string;
-  links: Array<Link>;
 }
 
 export interface Props {
-  links: Array<Links>;
   secondaryLinks: Array<Link>;
-  socialLinks: Array<Link>;
   footNote?: string;
   theme?: string;
 }
 
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+const { secondaryLinks = [], footNote = '', theme = 'light' } = Astro.props;
 ---
 
-<footer
-  class:list={[
-    { dark: theme === 'dark' },
-    'relative border-t border-gray-200 dark:border-slate-800 not-prose bg-amber-50 dark:bg-slate-900"',
-  ]}
->
+<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-slate-700 not-prose bg-[#0F3D91]']}>
   <div class="absolute inset-0 pointer-events-none dark:bg-dark" aria-hidden="true"></div>
-  <div
-    class="relative px-4 mx-auto max-w-7xl sm:px-6 dark:text-slate-300 intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-  >
-    <div class="grid grid-cols-12 gap-4 py-8 gap-y-8 sm:gap-8 md:py-12">
-      <div class="col-span-12 lg:col-span-4">
-        <div class="mb-2">
-          <a class="inline-block text-xl font-bold" href={getHomePermalink()}>{SITE?.name}</a>
-        </div>
-        <div class="flex gap-1 text-sm text-muted">
-          {
-            secondaryLinks.map(({ text, href }, index) => (
-              <>
-                {index !== 0 ? ' · ' : ''}
-                <a
-                  class="transition duration-150 ease-in-out text-muted hover:text-gray-700 dark:text-gray-400 hover:underline"
-                  href={href}
-                  set:html={text}
-                />
-              </>
-            ))
-          }
-        </div>
-      </div>
-      {
-        links.map(({ title, links }) => (
-          <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="mb-2 font-medium dark:text-gray-300">{title}</div>
-            {links && Array.isArray(links) && links.length > 0 && (
-              <ul class="text-sm">
-                {links.map(({ text, href, ariaLabel }) => (
-                  <li class="mb-2">
-                    <a
-                      class="transition duration-150 ease-in-out text-muted hover:text-gray-700 hover:underline dark:text-gray-400"
-                      href={href}
-                      aria-label={ariaLabel}
-                    >
-                      <Fragment set:html={text} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))
-      }
-    </div>
-    <div class="py-6 md:flex md:items-center md:justify-between md:py-8">
-      {
-        socialLinks?.length ? (
-          <ul class="flex mb-4 -ml-2 md:order-1 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
-            {socialLinks.map(({ ariaLabel, href, text, icon }) => (
-              <li>
-                <a
-                  class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-                  aria-label={ariaLabel}
-                  href={href}
-                >
-                  {icon && <Icon name={icon} class="w-5 h-5" />}
-                  <Fragment set:html={text} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          ''
-        )
-      }
 
-      <div class="mr-4 text-sm dark:text-muted">
-        <Fragment set:html={footNote} />
+  <div class="relative px-4 py-10 mx-auto text-white max-w-7xl sm:px-6 md:py-12">
+    <!-- 회사명 + 회사 정보 -->
+    <div class="col-span-12 lg:col-span-4">
+      <!-- 회사명 -->
+      <div class="mb-2">
+        <a class="inline-block text-xl font-bold text-white" href={getHomePermalink()}>
+          {SITE?.name}
+        </a>
+      </div>
+
+      <!-- 회사 상세 정보 -->
+      <div class="mb-4 space-y-1 text-sm text-slate-200">
+        <p>대표이사 : 류병욱</p>
+        <p>사업자등록번호 : 228-86-02615</p>
+        <p>판교 오피스 : 경기도 성남시 분당구 분당내곡로 159, KCC 웰츠타워 A동 12층</p>
+        <p>이메일 : sales@humantech-group.com</p>
+      </div>
+
+      <!-- Terms / Privacy -->
+      <div class="flex gap-1 text-sm">
+        {
+          secondaryLinks.map(({ text, href }, index) => (
+            <>
+              {index !== 0 ? ' · ' : ''}
+              <a
+                class="transition duration-150 ease-in-out text-slate-200 hover:text-white hover:underline"
+                href={href}
+                set:html={text}
+              />
+            </>
+          ))
+        }
       </div>
     </div>
+
+    <!-- Copyright -->
+    {
+      footNote && (
+        <div class="mt-8 text-sm text-slate-300">
+          <Fragment set:html={footNote} />
+        </div>
+      )
+    }
   </div>
 </footer>

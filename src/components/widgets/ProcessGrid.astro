@@ -1,0 +1,68 @@
+---
+import Image from '~/components/common/Image.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import type { Headline as HeadlineType } from '~/types';
+
+// ✅ item에 들어갈 데이터 타입을 정의합니다.
+interface Item {
+  title?: string;
+  description?: string;
+  image?: {
+    src: string;
+    alt?: string;
+  };
+}
+
+interface Props extends HeadlineType {
+  id?: string;
+  isDark?: boolean;
+  classes?: Record<string, string>;
+  bg?: string;
+  items?: Array<Item>; // ✅ 위에서 정의한 Item의 배열임을 명시합니다.
+}
+
+const {
+  title = '',
+  subtitle = '',
+  tagline = '',
+  items = [],
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+
+  <div class="grid grid-cols-1 gap-8 mt-12 sm:grid-cols-2 lg:grid-cols-3">
+    {/* ✅ item: Item 으로 타입을 명시하여 any 에러를 해결합니다. */}
+    {
+      items &&
+        items.map((item: Item) => (
+          <div class="flex flex-col overflow-hidden transition-all duration-300 ease-in-out bg-white border shadow-lg dark:bg-slate-900 rounded-xl border-slate-200 dark:border-slate-800 hover:shadow-xl hover:scale-105 hover:-translate-y-1">
+            {item.image && item.image.src && (
+              <div class="relative h-48 overflow-hidden group">
+                <Image
+                  src={item.image.src}
+                  alt={item.image.alt || ''}
+                  width={400}
+                  height={225}
+                  layout="cover"
+                  class="object-cover w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-110"
+                />
+              </div>
+            )}
+            <div class="p-6">
+              {item.title && <h3 class="mb-2 text-xl font-bold dark:text-white" set:html={item.title} />}
+              {item.description && (
+                <p class="text-sm leading-relaxed text-muted dark:text-slate-400" set:html={item.description} />
+              )}
+            </div>
+          </div>
+        ))
+    }
+  </div>
+</WidgetWrapper>
