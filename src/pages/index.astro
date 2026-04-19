@@ -44,6 +44,7 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  <link rel="preload" as="video" href="/videos/slide1.mp4" type="video/mp4" />
   <!-- Hero Widget ******************* -->
   <Hero>
     <Fragment slot="actions">
@@ -64,17 +65,17 @@ const metadata = {
     <Fragment slot="bg">
       <div class="absolute inset-x-0 bottom-0 top-[72px] md:top-[76px] overflow-hidden">
         <!-- Video 1 -->
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/images/slide1-poster.png">
           <source src="/videos/slide1.mp4" type="video/mp4" />
         </video>
 
         <!-- Video 2 -->
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
           <source src="/videos/slide2.mp4" type="video/mp4" />
         </video>
 
         <!-- Video 3 -->
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
           <source src="/videos/slide3.mp4" type="video/mp4" />
         </video>
 
